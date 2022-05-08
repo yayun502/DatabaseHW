@@ -1,8 +1,8 @@
 <?php
     $dbservername='localhost';
-    $dbname='examdb';
-    $dbusername='examdb';
-    $dbpassword='examdb';
+    $dbname='databasehw';
+    $dbusername='root';
+    $dbpassword='';
 
     try{
         if(!isset($_POST['re_pwd'])||empty($_POST['re_pwd'])){

@@ -3,9 +3,9 @@
     $_SESSION['Authenticated']=false;
 
     $dbservername='localhost';
-    $dbname='examdb';
-    $dbusername='examdb';
-    $dbpassword='examdb';
+    $dbname='databasehw';
+    $dbusername='root';
+    $dbpassword='';
 
 
     try{

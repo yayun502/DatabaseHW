@@ -3,9 +3,9 @@
     $_SESSION['Authenticated']=false;
 
     $dbservername='localhost';
-    $dbname='examdb';
-    $dbusername='examdb';
-    $dbpassword='examdb';
+    $dbname='databasehw';
+    $dbusername='root';
+    $dbpassword='';
 
 
     try{
@@ -56,7 +56,7 @@
             throw new Exception("Account has been registered!!");
         }
     }
-    catch(Exception $e){
+    catch(PDOException $e){
         $msg = $e->getMessage();
         session_unset();
         session_destroy();

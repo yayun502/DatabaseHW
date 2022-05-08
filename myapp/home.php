@@ -2,9 +2,9 @@
     session_start();
 
     $dbservername='localhost';
-    $dbname='examdb';
-    $dbusername='examdb';
-    $dbpassword='examdb';
+    $dbname='databasehw';
+    $dbusername='root';
+    $dbpassword='';
 
 
     try{
