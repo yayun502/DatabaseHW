@@ -72,7 +72,7 @@
 					
 
 					<!-- Start Sign In Form -->
-					<form action="#" class="fh5co-form animate-box" data-animate-effect="fadeIn">
+					<form action="login.php" method="post" class="fh5co-form animate-box" data-animate-effect="fadeIn">
 						<h2>Sign In</h2>
 						<div class="form-group">
 							<label for="Account" class="sr-only">Account</label>
