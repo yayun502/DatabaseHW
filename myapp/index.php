@@ -76,11 +76,11 @@
 						<h2>Sign In</h2>
 						<div class="form-group">
 							<label for="Account" class="sr-only">Account</label>
-							<input type="text" class="form-control" id="Account" placeholder="Account" autocomplete="off">
+							<input type="text" name="uacc" class="form-control" id="Account" placeholder="Account" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="password" class="sr-only">Password</label>
-							<input type="password" class="form-control" id="password" placeholder="Password" autocomplete="off">
+							<input type="password" name="pwd" class="form-control" id="password" placeholder="Password" autocomplete="off">
 						</div>
 				
 						<div class="form-group">
