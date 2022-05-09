@@ -9,17 +9,20 @@
 
 
     try{
-        if(!isset($_POST['uname'])||!isset($_POST['uphone'])||!isset($_POST['uacc'])||!isset($_POST['pwd'])||!isset($_POST['re_pwd'])||!isset($_POST['ulat'])||!isset($_POST['ulon'])){
+        if(!isset($_POST['uname']) || !isset($_POST['uphone']) || !isset($_POST['uacc']) || !isset($_POST['pwd'])
+            || !isset($_POST['re_pwd']) || !isset($_POST['ulat']) || !isset($_POST['ulon'])){
             header("Location: index.php");
             exit();
         }
-        if(empty($_POST['uname'])||empty($_POST['uphone'])||empty($_POST['uacc'])||empty($_POST['pwd'])||empty($_POST['re_pwd'])||empty($_POST['ulat'])||empty($_POST['ulon'])){
+        if(empty($_POST['uname']) || empty($_POST['uphone']) || empty($_POST['uacc']) || empty($_POST['pwd'])
+            || empty($_POST['re_pwd']) || empty($_POST['ulat']) || empty($_POST['ulon'])){
             throw new Exception('欄位空白');
         }
         if($_POST['pwd']!=$_POST['re_pwd']){
             throw new Exception('密碼驗證 ≠ 密碼');
         }
-        if(ctype_alnum($_POST['pwd'])||ctype_alnum($_POST['uacc'])||(strlen($_POST['uphone'])!=10 && is_numeric($_POST['uphone']))){
+        if(ctype_alnum($_POST['pwd']) || ctype_alnum($_POST['uacc']) || (strlen($_POST['uphone'])!=10 && is_numeric($_POST['uphone'])
+            || is_numeric($_POST['ulat']) || is_numeric($_POST['ulon']))){
             throw new Exception('格式不對');
         }
         $uname = $_POST['uname'];
