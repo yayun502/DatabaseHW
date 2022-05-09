@@ -10,7 +10,7 @@
 
     try{
         if(!isset($_POST['sname']) || !isset($_POST['scat']) || !isset($_POST['slat']) || !isset($_POST['slon'])){
-            header("Location: nav.php");
+            header("Location: shop.php");
             exit();
         }
         if(empty($_POST['sname']) || empty($_POST['scat']) || empty($_POST['slat']) || empty($_POST['slon'])){
@@ -34,13 +34,16 @@
             values(:owner,:shop_name, :shop_category, :latitude, :longitude)");
             $stmt->execute(array('owner'=>$uacc, 'shop_name'=>$sname, 'shop_category'=>$scat, 'latitude'=>$slat, 'longitude'=>$slon));
             
+            $stmt = $conn->prepare("update users set role='manager' where account='$uacc'");
+            $stmt->execute();
+
             echo <<< EOT
             <!DOCTYPE>
             <html>
                 <body>
                     <script>
                     alert("Register success!!");
-                    window.location.replace("nav.php");
+                    window.location.replace("shop.php");
                     </script>
                 </body>
             </html>
@@ -59,7 +62,7 @@
                 <body>
                     <script>
                     alert("$msg");
-                    window.location.replace("nav.php");
+                    window.location.replace("shop.php");
                     </script>
                 </body>
             </html>

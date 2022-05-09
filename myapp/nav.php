@@ -9,7 +9,7 @@
     $uacc = $_SESSION['Account']; 
     $conn = new PDO("mysql:host=$dbservername;dbname=$dbname",$dbusername,$dbpassword);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("select name,phonenumber,latitude,longitude from users where account=:account");
+    $stmt = $conn->prepare("select name,phonenumber,latitude,longitude,role from users where account=:account");
     $stmt->execute(array('account'=>$uacc));
     
     $row = $stmt->fetch();
@@ -17,6 +17,7 @@
     $uphone = $row['phonenumber'];
     $ulat = $row['latitude']; 
     $ulon = $row['longitude'];
+    $urole = $row['role'];
 
     try{
         if(!isset($_SESSION['Authenticated'])||$_SESSION['Authenticated']!=true){
@@ -84,7 +85,7 @@ echo <<< EOT
         <h3>Profile</h3>
         <div class="row">
           <div class="col-xs-12">
-            Accouont: <label>$uname</label>, user, PhoneNumber: <label>$uphone</label>,  location: <label>$ulat</label>, <label>$ulon</label>
+            Accouont: <label>$uname</label>, <label>$urole</label>, PhoneNumber: <label>$uphone</label>,  location: <label>$ulat</label>, <label>$ulon</label>
             
             <button type="button " style="margin-left: 5px;" class=" btn btn-info " data-toggle="modal"
             data-target="#location">edit location</button>
