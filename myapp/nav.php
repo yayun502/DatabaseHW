@@ -6,6 +6,35 @@
     $dbusername='root';
     $dbpassword='';
 
+    $uacc = $_SESSION['Account']; 
+    $uname = $_SESSION['Name'];
+    $uphone = $_SESSION['Phonenumber'];
+    $ulat = $_SESSION['Latitude']; 
+    $ulon = $_SESSION['Longitude'];
+
+    try{
+        if(!isset($_SESSION['Authenticated'])||$_SESSION['Authenticated']!=true){
+            header("Location: index.php");
+            exit();
+        }
+    }
+    catch(Exception $e){
+        $msg = $e->getMessage();
+        session_unset();
+        session_destroy();
+        echo <<< EOT
+            <!DOCTYPE>
+            <html>
+                <body>
+                    <script>
+                    alert("Internal Error. $msg");
+                    window.location.replace("index.php");
+                    </script>
+                </body>
+            </html>
+        EOT;
+    }
+
 echo <<< EOT
 <!doctype html>
 <html lang="en">
@@ -49,7 +78,7 @@ echo <<< EOT
         <h3>Profile</h3>
         <div class="row">
           <div class="col-xs-12">
-            Accouont: sherry, user, PhoneNumber: 0912345678,  location: 24.786944626633865, 120.99753981198887
+            Accouont: <label>$uacc</label>, <label>$uname</label>, PhoneNumber: <label>$uphone</label>,  location: <label>$ulat</label>, <label>$ulon</label>
             
             <button type="button " style="margin-left: 5px;" class=" btn btn-info " data-toggle="modal"
             data-target="#location">edit location</button>

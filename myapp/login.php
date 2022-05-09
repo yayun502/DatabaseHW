@@ -30,7 +30,7 @@
                 $_SESSION['Name'] = $row['name'];
                 $_SESSION['Phonenumber'] = $row['phonenumber'];
                 $_SESSION['Account'] = $row['account'];
-                $_SESSION['Lattitude'] = $row['lattitude'];
+                $_SESSION['Latitude'] = $row['latitude'];
                 $_SESSION['Longitude'] = $row['longitude'];
                 header("Location: nav.php");
                 exit();
