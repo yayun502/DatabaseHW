@@ -18,6 +18,7 @@
     $ulat = $row['latitude']; 
     $ulon = $row['longitude'];
     $urole = $row['role'];
+    $uphone = str_pad($uphone,10,"0",STR_PAD_LEFT);
 
     try{
         if(!isset($_SESSION['Authenticated'])||$_SESSION['Authenticated']!=true){
