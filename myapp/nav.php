@@ -7,10 +7,16 @@
     $dbpassword='';
 
     $uacc = $_SESSION['Account']; 
-    $uname = $_SESSION['Name'];
-    $uphone = $_SESSION['Phonenumber'];
-    $ulat = $_SESSION['Latitude']; 
-    $ulon = $_SESSION['Longitude'];
+    $conn = new PDO("mysql:host=$dbservername;dbname=$dbname",$dbusername,$dbpassword);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare("select name,phonenumber,latitude,longitude from users where account=:account");
+    $stmt->execute(array('account'=>$uacc));
+    
+    $row = $stmt->fetch();
+    $uname = $row['name'];
+    $uphone = $row['phonenumber'];
+    $ulat = $row['latitude']; 
+    $ulon = $row['longitude'];
 
     try{
         if(!isset($_SESSION['Authenticated'])||$_SESSION['Authenticated']!=true){
@@ -78,7 +84,7 @@ echo <<< EOT
         <h3>Profile</h3>
         <div class="row">
           <div class="col-xs-12">
-            Accouont: <label>$uacc</label>, <label>$uname</label>, PhoneNumber: <label>$uphone</label>,  location: <label>$ulat</label>, <label>$ulon</label>
+            Accouont: <label>$uname</label>, user, PhoneNumber: <label>$uphone</label>,  location: <label>$ulat</label>, <label>$ulon</label>
             
             <button type="button " style="margin-left: 5px;" class=" btn btn-info " data-toggle="modal"
             data-target="#location">edit location</button>
@@ -90,16 +96,19 @@ echo <<< EOT
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">edit location</h4>
                   </div>
+
+                  <form action="update_location.php" method="post">
                   <div class="modal-body">
                     <label class="control-label " for="latitude">latitude</label>
-                    <input type="text" class="form-control" id="latitude" placeholder="enter latitude">
-                      <br>
-                      <label class="control-label " for="longitude">longitude</label>
-                    <input type="text" class="form-control" id="longitude" placeholder="enter longitude">
+                    <input type="text" name="new_ulat" class="form-control" id="latitude" placeholder="enter latitude"><br>
+                    <label class="control-label " for="longitude">longitude</label>
+                    <input type="text" name="new_ulon" class="form-control" id="longitude" placeholder="enter longitude">
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Edit</button>
+                    <input type="submit" value="Edit">
                   </div>
+                  </form>
+
                 </div>
               </div>
             </div>
