@@ -21,9 +21,10 @@
         if($_POST['pwd']!=$_POST['re_pwd']){
             throw new Exception('密碼驗證 ≠ 密碼');
         }
-        if(ctype_alnum($_POST['pwd']) || ctype_alnum($_POST['uacc']) || (strlen($_POST['uphone'])!=10 && is_numeric($_POST['uphone'])
-            || is_numeric($_POST['ulat']) || is_numeric($_POST['ulon']))){
-            throw new Exception('格式不對');
+        if(!ctype_alnum($_POST['pwd']) || !ctype_alnum($_POST['uacc']) || !(strlen($_POST['uphone'])==10 && is_numeric($_POST['uphone']))
+            || !is_numeric($_POST['ulat']) || !is_numeric($_POST['ulon'])
+            || strval($_POST['ulat'])>90.0 || strval($_POST['ulat'])<-90.0 || strval($_POST['ulon'])>180.0 || strval($_POST['ulon'])<-180.0){
+            throw new Exception('輸入格式不對');
         }
         $uname = $_POST['uname'];
         $uphone = $_POST['uphone'];
