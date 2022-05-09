@@ -32,7 +32,7 @@
                 $_SESSION['Account'] = $row['account'];
                 $_SESSION['Lattitude'] = $row['lattitude'];
                 $_SESSION['Longitude'] = $row['longitude'];
-                header("Location: home.php");
+                header("Location: nav.php");
                 exit();
             }
             else{

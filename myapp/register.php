@@ -54,7 +54,7 @@
                 <body>
                     <script>
                     alert("Register success!!");
-                    window.location.replace("home.php");
+                    window.location.replace("nav.php");
                     </script>
                 </body>
             </html>
