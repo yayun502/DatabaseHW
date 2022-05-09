@@ -81,9 +81,9 @@ echo <<< EOT
 
     <div class="tab-content">
         <h3> Start a business </h3>
-        <div class="form-group ">
+        <form action="shop_register.php" method="post">
+        <div class="form-group">
           <div class="row">
-            <form action="shop_register.php" method="post">
             <div class="col-xs-2">
               <label for="ex5">shop name</label>
               <input name="sname" class="form-control" id="ex5" placeholder="macdonald" type="text" >
@@ -103,10 +103,9 @@ echo <<< EOT
           </div>
         </div>
 
-
-        <div class=" row" style=" margin-top: 25px;">
+        <div class="row" style="margin-top: 25px;">
           <div class=" col-xs-3">
-            <input type="submit" value="register">
+            <button type="submit" class="btn btn-primary"  >register</button>
           </div>
         </div>
         </form>
@@ -114,7 +113,7 @@ echo <<< EOT
 
         <hr>
         <h3>ADD</h3>
-
+        <form action="menu.php" method="post">
         <div class="form-group ">
           <div class="row">
 
@@ -144,10 +143,11 @@ echo <<< EOT
             </div>
             <div class=" col-xs-3">
 
-              <button style=" margin-top: 15px;" type="button" class="btn btn-primary">Add</button>
+              <button style=" margin-top: 15px;" type="submit" class="btn btn-primary">Add</button>
             </div>
           </div>
         </div>
+        </form>
 
         <div class="row">
           <div class="  col-xs-8">

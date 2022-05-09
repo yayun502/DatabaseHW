@@ -107,7 +107,7 @@ echo <<< EOT
                     <input type="text" name="new_ulon" class="form-control" id="longitude" placeholder="enter longitude">
                   </div>
                   <div class="modal-footer">
-                    <input type="submit" value="Edit">
+                    <button type="submit" class="btn btn-default">Edit</button>
                   </div>
                   </form>
 
@@ -312,8 +312,7 @@ echo <<< EOT
       <div id="menu1" class="tab-pane fade">
 
 
-
-
+    <!--這裡開始是shop.php內容-->
         <h3> Start a business </h3>
         <div class="form-group ">
           <div class="row">
@@ -343,9 +342,9 @@ echo <<< EOT
             <input type="submit" value="register">
           </div>
         </div>
-        </form>
+        
 
-
+        
         <hr>
         <h3>ADD</h3>
 
@@ -492,6 +491,7 @@ echo <<< EOT
 
         </div>
 
+     
 
       </div>
 
