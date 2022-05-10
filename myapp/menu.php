@@ -25,7 +25,7 @@
             exit();
         }
         if(empty($_POST['mname']) || empty($_POST['mprice']) || empty($_POST['mquan']) || empty($_POST['mimg'])){
-            
+            throw new Exception('欄位空白');
         }
         if(!(floor($_POST['mprice'])==$_POST['mprice']) || !(floor($_POST['mquan'])==$_POST['mquan']) 
             || ($_POST['mprice'])<0 || ($_POST['mquan'])<0){
