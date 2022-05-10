@@ -9,7 +9,7 @@
     $uacc = $_SESSION['Account']; 
     $conn = new PDO("mysql:host=$dbservername;dbname=$dbname",$dbusername,$dbpassword);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("select name,phonenumber,latitude,longitude from users where account=:account");
+    $stmt = $conn->prepare("select name,phonenumber,latitude,longitude,role from users where account=:account");
     $stmt->execute(array('account'=>$uacc));
     
     $row = $stmt->fetch();
@@ -17,6 +17,22 @@
     $uphone = $row['phonenumber'];
     $ulat = $row['latitude']; 
     $ulon = $row['longitude'];
+    $urole = $row['role'];
+
+    if($urole=='manager'){
+      $_SESSION['Owner'] = $uacc;
+      $stmt = $conn->prepare("select shop_name,shop_category,latitude,longitude from shops where owner=:owner");
+      $stmt->execute(array('owner'=>$uacc));
+      $row = $stmt->fetch();
+      $sname = $row['shop_name'];
+      $scat = $row['shop_category'];
+      $slat = $row['latitude'];
+      $slon = $row['longitude'];
+      $_SESSION['Shop_name'] = $sname;
+      $_SESSION['Shop_category'] = $scat;
+      $_SESSION['Shop_latitude'] = $slat;
+      $_SESSION['Shop_longitude'] = $slon;
+    } 
 
     try{
         if(!isset($_SESSION['Authenticated'])||$_SESSION['Authenticated']!=true){
@@ -110,26 +126,26 @@ echo <<< EOT
         </div>
         </form>
 
-
+        <!---------------------這裡開始是ADD------------------------->
         <hr>
         <h3>ADD</h3>
         <form action="menu.php" method="post">
-        <div class="form-group ">
+        <div class="form-group">
           <div class="row">
 
             <div class="col-xs-6">
               <label for="ex3">meal name</label>
-              <input class="form-control" id="ex3" type="text">
+              <input name="mname" class="form-control" id="ex3" type="text">
             </div>
           </div>
           <div class="row" style=" margin-top: 15px;">
             <div class="col-xs-3">
               <label for="ex7">price</label>
-              <input class="form-control" id="ex7" type="text">
+              <input name="mprice" class="form-control" id="ex7" type="text">
             </div>
             <div class="col-xs-3">
               <label for="ex4">quantity</label>
-              <input class="form-control" id="ex4" type="text">
+              <input name="mquan" class="form-control" id="ex4" type="text">
             </div>
           </div>
 
@@ -138,7 +154,7 @@ echo <<< EOT
 
             <div class=" col-xs-3">
               <label for="ex12">上傳圖片</label>
-              <input id="myFile" type="file" name="myFile" multiple class="file-loading">
+              <input name="mimg" id="myFile" type="file" name="myFile" multiple class="file-loading">
 
             </div>
             <div class=" col-xs-3">
@@ -148,7 +164,7 @@ echo <<< EOT
           </div>
         </div>
         </form>
-
+        <!---------------------------分隔線------------------------------>
         <div class="row">
           <div class="  col-xs-8">
             <table class="table" style=" margin-top: 15px;">

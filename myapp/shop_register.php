@@ -17,7 +17,7 @@
             throw new Exception('欄位空白');
         }
         if(!is_numeric($_POST['slat']) || !is_numeric($_POST['slon'])
-            || strval($_POST['slat'])>90.0 || strval($_POST['slat'])<-90.0 || strval($_POST['slon'])>180.0 || strval($_POST['slon'])<-180.0){
+            || ($_POST['slat'])>90.0 || ($_POST['slat'])<-90.0 || ($_POST['slon'])>180.0 || ($_POST['slon'])<-180.0){
             throw new Exception('輸入格式不對');
         }
         $sname = $_POST['sname'];
@@ -36,6 +36,11 @@
             
             $stmt = $conn->prepare("update users set role='manager' where account='$uacc'");
             $stmt->execute();
+
+            $_SESSION['Shop_name'] = $sname;
+            $_SESSION['Shop_category'] = $scat;
+            $_SESSION['Shop_latitude'] = $slat;
+            $_SESSION['Shop_longitude'] = $slon;
 
             echo <<< EOT
             <!DOCTYPE>
