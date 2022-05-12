@@ -106,22 +106,22 @@ echo <<< EOT
             </div>
             <div class="col-xs-2">
               <label for="ex5">shop category</label>
-              <input name="scat" class="form-control" id="ex5" placeholder="fast food" type="text" >
+              <input name="scat" class="form-control" id="ex6" placeholder="fast food" type="text" >
             </div>
             <div class="col-xs-2">
               <label for="ex6">latitude</label>
-              <input name="slat" class="form-control" id="ex6" placeholder="121.00028167648875" type="text" >
+              <input name="slat" class="form-control" id="ex7" placeholder="24.78472733371133" type="text" >
             </div>
             <div class="col-xs-2">
               <label for="ex8">longitude</label>
-              <input name="slon" class="form-control" id="ex8" placeholder="24.78472733371133" type="text" >
+              <input name="slon" class="form-control" id="ex8" placeholder="121.00028167648875" type="text" >
             </div>
           </div>
         </div>
 
         <div class="row" style="margin-top: 25px;">
           <div class=" col-xs-3">
-            <button type="submit" class="btn btn-primary"  >register</button>
+            <button type="submit" class="btn btn-primary" id="ex2"  >register</button>
           </div>
         </div>
         </form>
@@ -285,11 +285,37 @@ echo <<< EOT
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
   <script>
+    var urole = "$urole";
+    var sname = "$sname";
+    var scat = "$scat";
+    var slat = "$slat";
+    var slon = "$slon";
+
     $(document).ready(function () {
       $(".nav-tabs a").click(function () {
         $(this).tab('show');
       });
     });
+    if (urole == 'manager'){
+      var snameField = document.getElementById('ex5');
+      snameField.placeholder = sname;
+      snameField.setAttribute("readOnly", 'true');
+
+      var scatField = document.getElementById('ex6');
+      scatField.placeholder = scat;
+      scatField.setAttribute("readOnly", 'true');
+
+      var slatField = document.getElementById('ex7');
+      slatField.placeholder = slat;
+      slatField.setAttribute("readOnly", 'true');
+
+      var slonField = document.getElementById('ex8');
+      slonField.placeholder = slon;
+      slonField.setAttribute("readOnly", 'true');
+
+      var register = document.getElementById('ex2');
+      register.disabled = true;
+    }
   </script>
 
   <!-- Option 2: Separate Popper and Bootstrap JS -->
