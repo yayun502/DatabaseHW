@@ -1,3 +1,4 @@
+//<?php include("shop.php");?>
 <?php
     session_start();
 
@@ -41,10 +42,10 @@
         if($_FILES['mimg']['error']!=0){
             throw new Exception('上傳錯誤');
         }
-        $file = fopen($_FILES["mimg"]["tmp_name"], "rb");
+        $file = fopen($_FILES["myFile"]["tmp_name"], "rb");
         $fileContents = fread($file, filesize($_FILES["mimg"]["tmp_name"]));
         fclose($file);
-        $fileContents = base_encode($fileContents);
+        $fileContents = base64_encode($fileContents);
 
         $conn = new PDO("mysql:host=$dbservername;dbname=$dbname",$dbusername,$dbpassword);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
