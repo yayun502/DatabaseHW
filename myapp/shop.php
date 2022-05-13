@@ -181,7 +181,7 @@ echo <<< EOT
               <tbody>
                 <tr>
                   <th scope="row">1</th>
-                  <td><img src="Picture/1.jpg" with="50" heigh="10" alt="Hamburger"></td>
+                  <td><img src="../Picture/1.jpg" width="100" height="100" alt="Hamburger"></td>
                   <td>Hamburger</td>
                 
                   <td>80 </td>
@@ -214,7 +214,6 @@ echo <<< EOT
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Edit</button>
-                             
                             </div>
                           </div>
                         </div>
@@ -223,7 +222,7 @@ echo <<< EOT
                 </tr>
                 <tr>
                   <th scope="row">2</th>
-                  <td><img src="Picture/2.jpg" with="10" heigh="10" alt="coffee"></td>
+                  <td><img src="../Picture/2.jfif" width="100" height="100" alt="coffee"></td>
                   <td>coffee</td>
                
                   <td>50 </td>

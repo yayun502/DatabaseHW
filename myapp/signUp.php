@@ -64,7 +64,7 @@
 				xhttp.onreadystatechange = function(){
 					var message;
 					if(this.readyState==4 && this.status==200){
-						swith(this.responseText){
+						switch(this.responseText){
 							case 'YES':
 								message = 'The account is available.';
 								break;
@@ -80,12 +80,12 @@
 					
 				};
 			}
-			xhttp.open("POST", "check_account.php", true);
-			xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			xhttp.send("uacc="+uacc);
 			else{
 				document.getElementById("msg").innerHTML = '';
 			}
+			xhttp.open("POST", "check_account.php", true);
+			xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xhttp.send("uacc="+uacc);
 		}
 	</script>
 	</head>
