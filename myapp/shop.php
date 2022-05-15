@@ -11,13 +11,17 @@
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $conn->prepare("select name,phonenumber,latitude,longitude,role from users where account=:account");
     $stmt->execute(array('account'=>$uacc));
-    
     $row = $stmt->fetch();
+
     $uname = $row['name'];
     $uphone = $row['phonenumber'];
     $ulat = $row['latitude']; 
     $ulon = $row['longitude'];
     $urole = $row['role'];
+
+    $mrowi = 0;
+    $mrow = $stmt;
+    $mcount = $stmt;
 
     if($urole=='manager'){
       $_SESSION['Owner'] = $uacc;
@@ -32,6 +36,13 @@
       $_SESSION['Shop_category'] = $scat;
       $_SESSION['Shop_latitude'] = $slat;
       $_SESSION['Shop_longitude'] = $slon;
+      
+      $stmt = $conn->prepare("select meal_name,price,quantity,image from menus where shop_name=:shop_name");
+      $stmt->execute(array('shop_name'=>$sname));
+      $mrow = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      $mcount = $stmt->columnCount() - 1;
+      print_r($mrow);
+      echo $mrow[$mrowi]['meal_name'];
     } 
 
     try{
@@ -179,6 +190,11 @@ echo <<< EOT
                 </tr>
               </thead>
               <tbody>
+                <?php
+                  foreach($mrow as $row){
+
+                  }
+                ?>
                 <tr>
                   <th scope="row">1</th>
                   <td><img src="../Picture/1.jpg" width="100" height="100" alt="Hamburger"></td>
@@ -218,50 +234,6 @@ echo <<< EOT
                           </div>
                         </div>
                       </div>
-                  <td><button type="button" class="btn btn-danger">Delete</button></td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td><img src="../Picture/2.jfif" width="100" height="100" alt="coffee"></td>
-                  <td>coffee</td>
-               
-                  <td>50 </td>
-                  <td>20</td>
-                  <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#coffee-1">
-                    Edit
-                    </button></td>
-                    <!-- Modal -->
-                        <div class="modal fade" id="coffee-1" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">coffee Edit</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                <div class="row" >
-                                  <div class="col-xs-6">
-                                    <label for="ex72">price</label>
-                                    <input class="form-control" id="ex72" type="text">
-                                  </div>
-                                  <div class="col-xs-6">
-                                    <label for="ex42">quantity</label>
-                                    <input class="form-control" id="ex42" type="text">
-                                  </div>
-                                </div>
-                      
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Edit</button>
-                               
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-
                   <td><button type="button" class="btn btn-danger">Delete</button></td>
                 </tr>
 
